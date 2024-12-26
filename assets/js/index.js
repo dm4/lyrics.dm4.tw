@@ -34,7 +34,7 @@ function updateDropdown() {
 
 $(document).ready(function () {
   // Default album
-  let album = 'sssss_live';
+  let album = 'wooly_single';
   showLyric(album);
   $('#navbarSupportedContent ul.dropdown-menu > li > a').each(function () {
     $(this).click(function () {
