@@ -1,3 +1,5 @@
+const DEFAULT_ALBUM = 'shiori';
+
 function getAlbumMarkdown(album) {
   // Skip front matter of markdown file
   const mdText = document.getElementById('lyric_' + album).innerHTML.split('---')[2];
@@ -34,8 +36,7 @@ function updateDropdown() {
 
 $(document).ready(function () {
   // Default album
-  let album = 'wooly_single';
-  showLyric(album);
+  showLyric(DEFAULT_ALBUM);
   $('#navbarSupportedContent ul.dropdown-menu > li > a').each(function () {
     $(this).click(function () {
       event.preventDefault();
