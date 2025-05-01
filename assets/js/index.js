@@ -1,4 +1,4 @@
-const DEFAULT_ALBUM = 'shiori';
+const DEFAULT_ALBUM = 'moon_phases';
 
 function getAlbumMarkdown(album) {
   // Skip front matter of markdown file
