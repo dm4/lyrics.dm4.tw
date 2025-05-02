@@ -48,9 +48,12 @@ body {
     float: left;
     min-width: 10rem;
     margin: 0;
-    background-color: #212529;
     /* match dark navbar */
-    border: 1px solid rgba(0, 0, 0, .15);
+    background-color: #212529;
+    /* 淺灰色框線 */
+    border: 1px solid #555;
+    /* 可選，讓框線更明顯 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .navbar-nav .dropdown-menu.show {
