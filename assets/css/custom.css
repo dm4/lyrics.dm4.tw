@@ -17,8 +17,9 @@ body {
     font-size: 1.4em;
 }
 
-.navbar-brand {
-    margin-right: 8px;
+#currentAlbum {
+    font-size: 1.3em;
+    margin-left: 5px;
 }
 
 #lyric {
