@@ -5,92 +5,134 @@ layout: default
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lyrics</title>
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <!-- Noto Sans TC from Google Fonts -->
-  <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosanstc.css">
-  <!-- marked -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked-gfm-heading-id/lib/index.umd.js"></script>
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <!-- Custom style -->
-  <link rel="stylesheet" href="/assets/css/custom.css">
-  <!-- Custom script -->
-  <script src="/assets/js/index.js"></script>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lyrics</title>
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous">
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+      <!-- Noto Sans TC from Google Fonts -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosanstc.css">
+    <!-- marked -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked-gfm-heading-id/lib/index.umd.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Custom style -->
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <!-- Custom script -->
+    <script src="/assets/js/index.js"></script>
+  </head>
 
-<body class="bg-dark text-light">
-  <nav class="navbar navbar-expand-sm bg-dark fixed-top" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">Lyrics</a>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <span id="theme-icon" class="nav-link theme-icon text-center">
-            <i class="bi bi-moon"></i>
-          </span>
-        </li>
-      </ul>
-      <ul class="navbar-nav me-auto mb-lg-0">
-        <li class="nav-item dropdown">
-          <a id="currentAlbum" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            目前專輯
-          </a>
-          <ul id="currentAlbumDropdown" class="dropdown-menu" aria-labelledby="currentAlbum">
-            <li><a class="dropdown-item" href="#">曲目 1</a></li>
-          </ul>
-        </li>
-      </ul>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id="navbarSupportedContent" class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto mb-lg-0">
-          {% for artist in site.artists %}
-            {% assign artist_title = artist.title | downcase %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown_{{ artist_title }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ artist.name }}</a>
-              {% assign albums = site.albums | where: 'artist', artist.name | sort: "year" %}
-              <ul artist="{{ artist_title }}" class="dropdown-menu" aria-labelledby="dropdown_{{ artist_title }}">
-                {% for album in albums %}
-                  <li><a album="{{ album.title | downcase }}" class="dropdown-item" href="#">{{ album.name }}</a></li>
-                {% endfor %}
-              </ul>
-            </li>
-          {% endfor %}
+  <body class="bg-dark text-light">
+    <nav class="navbar bg-dark fixed-top" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Lyrics</a>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <span id="theme-icon" class="nav-link theme-icon text-center">
+              <i class="bi bi-moon"></i>
+            </span>
+          </li>
         </ul>
-      </div><!--/.nav-collapse -->
-    </div>
-  </nav>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-1 col-md-2 col-lg-3"></div>
-      <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
-        <div id="lyric"></div>
-        <footer class="footer">
-          <p class="text-center">本站所有歌詞版權皆屬其原創作者</p>
-          <a href="https://github.com/dm4/lyrics.dm4.tw" target="_blank"><img src="/assets/images/github.png"
-              style="display: block; margin: auto; width: 36px;"></img></a>
-        </footer>
+        <ul class="navbar-nav me-auto mb-lg-0">
+          <li class="nav-item dropdown">
+            <a
+              id="currentAlbum"
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false">
+              目前專輯
+            </a>
+            <ul
+              id="currentAlbumDropdown"
+              class="dropdown-menu"
+              aria-labelledby="currentAlbum">
+              <li>
+                <a class="dropdown-item" href="#">曲目 1</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarSupportedContent" class="collapse navbar-collapse">
+          <ul class="navbar-nav me-auto mb-lg-0">
+            {% for artist in site.artists %}
+              {% assign artist_title = artist.title | downcase %}
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdown_{{ artist_title }}"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">{{ artist.name }}</a>
+                {% assign albums = site.albums | where: 'artist', artist.name | sort: "year" %}
+                <ul
+                  artist="{{ artist_title }}"
+                  class="dropdown-menu"
+                  aria-labelledby="dropdown_{{ artist_title }}">
+                  {% for album in albums %}
+                    <li>
+                      <a
+                        album="{{ album.title | downcase }}"
+                        class="dropdown-item"
+                        href="#">{{ album.name }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      <!-- /.nav-collapse -->
       </div>
-      <div class="col-sm-1 col-md-2 col-lg-3"></div>
-    </div>
-  </div><!-- /.container -->
+    </nav>
 
-  <!-- Hidden lyrics -->
-  {% for artist in site.artists %}
-    {% assign albums = site.albums | where: 'artist', artist.name %}
-    {% for album in albums %}
-      <div id="lyric_{{ album.title | downcase }}" style="display: none;">{% include_relative {{ album.path }} %}</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-1 col-md-2 col-lg-3"></div>
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+          <div id="lyric"></div>
+          <footer class="footer">
+            <p class="text-center">本站所有歌詞版權皆屬其原創作者</p>
+            <a href="https://github.com/dm4/lyrics.dm4.tw" target="_blank">
+              <img src="/assets/images/github.png" style="display: block; margin: auto; width: 36px;" />
+            </a>
+          </footer>
+        </div>
+        <div class="col-sm-1 col-md-2 col-lg-3"></div>
+      </div>
+    </div>
+    <!-- /.container -->
+
+    <!-- Hidden lyrics -->
+    {% for artist in site.artists %}
+      {% assign albums = site.albums | where: 'artist', artist.name %}
+      {% for album in albums %}
+        <div id="lyric_{{ album.title | downcase }}" style="display: none;">{% include_relative {{ album.path }} %}</div>
+      {% endfor %}
     {% endfor %}
-  {% endfor %}
-</body>
+  </body>
 
 </html>
