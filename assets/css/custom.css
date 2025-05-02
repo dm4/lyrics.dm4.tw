@@ -22,6 +22,10 @@ body {
     margin-left: 5px;
 }
 
+.dropdown-artist {
+    text-align: right;
+}
+
 #lyric {
     margin-top: 30px;
 }
@@ -74,6 +78,11 @@ body {
 
 .navbar-toggler {
     margin-left: 0;
+}
+
+#navbarSupportedContent .dropdown-menu-end {
+    right: 0;
+    left: auto;
 }
 
 .footer {

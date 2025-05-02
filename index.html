@@ -78,7 +78,7 @@ layout: default
               {% assign artist_title = artist.title | downcase %}
               <li class="nav-item dropdown">
                 <a
-                  class="nav-link dropdown-toggle"
+                  class="nav-link dropdown-toggle dropdown-artist"
                   href="#"
                   id="dropdown_{{ artist_title }}"
                   role="button"
@@ -87,7 +87,7 @@ layout: default
                 {% assign albums = site.albums | where: 'artist', artist.name | sort: "year" %}
                 <ul
                   artist="{{ artist_title }}"
-                  class="dropdown-menu"
+                  class="dropdown-menu dropdown-menu-end"
                   aria-labelledby="dropdown_{{ artist_title }}">
                   {% for album in albums %}
                     <li>
